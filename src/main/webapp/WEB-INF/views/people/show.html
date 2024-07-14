@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Человек</title>
+</head>
+<body>
+    <p th:text="${person.getFullName()}">ФИО</p>
+    <p th:text="${person.getYearOfBirth()}">Год рождения</p>
+    <br/>
+    <hr/>
+    <h2>Машины</h2>
+    <div th:if="${#lists.isEmpty(cars)}">
+        <p>Человек не арендовал ни одной машины</p>
+    </div>
+    <div th:unless="${#lists.isEmpty(cars)}">
+        <ul>
+            <li th:each="car : ${cars}">
+                <span th:text="${car.manufacturer} + ', ' + ${car.model} + ' (' + ${car.yearOfProduction} + ')'"/>
+            </li>
+        </ul>
+    </div>
+
+    <hr/>
+    <br/>
+    <a th:href="@{/people/{id}/edit(id=${person.getId()})}">Редактировать</a>
+    <br/>
+    <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
+        <input type="submit" value="Удалить человека"/>
+    </form>
+    <br/>
+    <a href="/people">Посмотреть всех людей</a>
+
+</body>
+</html>
