@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Новая машина</title>
+</head>
+<body>
+    <form th:method="POST" th:action="@{/cars}" th:object="${car}">
+        <label for="manufacturer">Производитель</label>
+        <input type="text" th:field="*{manufacturer}" id="manufacturer">
+        <div style="color: red" th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}">Наименование ошибки Производитель</div>
+        <br/>
+        <label for="model">Модель</label>
+        <input type="text" th:field="*{model}" id="model">
+        <div style="color: red" th:if="${#fields.hasErrors('model')}" th:errors="*{model}">Наименование ошибки model</div>
+        <br/>
+        <label for="yearOfProduction">Год производства</label>
+        <input type="text" th:field="*{yearOfProduction}" id="yearOfProduction">
+        <div style="color: red" th:if="${#fields.hasErrors('yearOfProduction')}" th:errors="*{yearOfProduction}">Наименование ошибки yearOfProduction</div>
+
+        <br/>
+        <input type="submit" value="Создать"/>
+    </form>
+
+    <br/>
+    <hr/>
+    <a href="/cars">Посмотреть все машины</a>
+</body>
+</html>
